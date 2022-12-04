@@ -1,24 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Box } from "@mui/material";
+
+import { Feed, Navbar, Detail, SearchFeed, News, WorldMap } from "./components";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Box sx={{ backgroundColor: "#000" }}>
+        <Navbar />
+        <Routes>
+          <Route path="/" exact element={<Feed />} />
+          <Route path="search/:SearchTerm" exact element={<SearchFeed />} />
+          <Route path="detail/:CountryName" exact element={<Detail />} />
+          <Route path="news/:Category" exact element={<News />} />
+          <Route path="coronavirus-world-map/" exact element={<WorldMap />} />
+        </Routes>
+      </Box>
+    </BrowserRouter>
   );
 }
 
